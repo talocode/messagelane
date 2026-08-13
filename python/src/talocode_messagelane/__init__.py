@@ -3,4 +3,4 @@
 from .client import MessageLaneClient
 
 __all__ = ["MessageLaneClient"]
-__version__ = "0.1.0"
+__version__ = "0.1.3"

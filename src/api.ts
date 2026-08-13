@@ -1,5 +1,5 @@
 import { createServer } from "node:http";
-import { MessageLane, DryRunProvider, WebhookProvider } from "./index.js";
+import { MessageLane, DryRunProvider, WebhookProvider, hostedPricing } from "./index.js";
 
 export function startApi(port = 3030, lane = new MessageLane()) {
   const server = createServer(async (request, response) => {
@@ -8,6 +8,7 @@ export function startApi(port = 3030, lane = new MessageLane()) {
       const body = request.method === "GET" ? undefined : await jsonBody(request);
       let result: unknown;
       if (request.method === "GET" && url.pathname === "/health") result = { ok: true };
+      else if (request.method === "GET" && url.pathname === "/v1/messagelane/pricing") result = { service: "messagelane", version: "0.1.3", ...hostedPricing };
       else if (request.method === "GET" && url.pathname === "/v1/messagelane/contacts") result = await lane.listContacts();
       else if (request.method === "POST" && url.pathname === "/v1/messagelane/contacts/import") result = await lane.importContacts((body as { contacts: Array<{ name?: string; phone: string; consent?: boolean; tags?: string[] }> }).contacts);
       else if (request.method === "POST" && url.pathname === "/v1/messagelane/campaigns") result = await lane.createCampaign(body as { name: string; message: string; sender: string });

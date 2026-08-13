@@ -54,12 +54,27 @@ messagelane serve --port 3030
 | `POST` | `/v1/messagelane/campaigns` | Create a campaign |
 | `POST` | `/v1/messagelane/campaigns/:id/send` | Send or dry run a campaign |
 | `GET` | `/v1/messagelane/deliveries?campaignId=:id` | Delivery records |
+| `GET` | `/v1/messagelane/pricing` | Hosted credit pricing |
 
 `POST /v1/messagelane/contacts/import` body:
 
 ```json
 {"contacts":[{"name":"Customer","phone":"+2349033335487","consent":true,"tags":["taiwo"]}]}
 ```
+
+## Hosted Credits
+
+| Route | Credits |
+|---|---:|
+| `GET /v1/messagelane/health` | 0 |
+| `GET /v1/messagelane/pricing` | 0 |
+| `GET /v1/messagelane/contacts` | 0 |
+| `POST /v1/messagelane/contacts/import` | 2 |
+| `POST /v1/messagelane/campaigns` | 2 |
+| `POST /v1/messagelane/campaigns/:id/send` | 5 |
+| `GET /v1/messagelane/deliveries` | 1 |
+
+Credits pay for hosted MessageLane operations. Connected SMS gateway and carrier fees are separate.
 
 ## MCP
 

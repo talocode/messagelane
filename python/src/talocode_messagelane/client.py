@@ -18,6 +18,9 @@ class MessageLaneClient:
     def list_contacts(self) -> List[Dict[str, Any]]:
         return self._request("GET", "/v1/messagelane/contacts")
 
+    def pricing(self) -> Dict[str, Any]:
+        return self._request("GET", "/v1/messagelane/pricing")
+
     def create_campaign(self, name: str, message: str, sender: str) -> Dict[str, Any]:
         return self._request("POST", "/v1/messagelane/campaigns", {"name": name, "message": message, "sender": sender})
 

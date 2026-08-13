@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { createInterface } from "node:readline";
-import { MessageLane, DryRunProvider } from "./index.js";
+import { MessageLane, DryRunProvider, hostedPricing } from "./index.js";
 
 const lane = new MessageLane(process.env.MESSAGELANE_DATA_FILE);
 const tools = [
@@ -9,6 +9,7 @@ const tools = [
   { name: "messagelane_create_campaign", description: "Create an SMS campaign.", inputSchema: { type: "object", properties: { name: { type: "string" }, message: { type: "string" }, sender: { type: "string" } }, required: ["name", "message", "sender"] } },
   { name: "messagelane_send_dry_run", description: "Run a consent-protected campaign delivery simulation.", inputSchema: { type: "object", properties: { campaignId: { type: "string" }, tag: { type: "string" } }, required: ["campaignId"] } },
   { name: "messagelane_delivery_report", description: "Read campaign delivery records.", inputSchema: { type: "object", properties: { campaignId: { type: "string" } } } }
+  ,{ name: "messagelane_pricing", description: "Read hosted MessageLane credit pricing.", inputSchema: { type: "object", properties: {} } }
 ];
 const reader = createInterface({ input: process.stdin, crlfDelay: Infinity });
 reader.on("line", async (line) => {
@@ -27,5 +28,6 @@ async function invoke(name: string, input: Record<string, unknown>) {
   if (name === "messagelane_create_campaign") return lane.createCampaign(input as { name: string; message: string; sender: string });
   if (name === "messagelane_send_dry_run") return lane.sendCampaign(input.campaignId as string, new DryRunProvider(), { tag: input.tag as string | undefined });
   if (name === "messagelane_delivery_report") return lane.report(input.campaignId as string | undefined);
+  if (name === "messagelane_pricing") return { service: "messagelane", ...hostedPricing };
   throw new Error("Unknown tool");
 }

@@ -9,6 +9,23 @@ type Store = { contacts: Contact[]; campaigns: Campaign[]; deliveries: Delivery[
 
 export type SmsProvider = { send(input: { to: string; from: string; message: string }): Promise<{ id: string }> };
 
+export const hostedPricing = {
+  currency: "credits",
+  routes: {
+    "GET /v1/messagelane/health": 0,
+    "GET /v1/messagelane/pricing": 0,
+    "GET /v1/messagelane/contacts": 0,
+    "POST /v1/messagelane/contacts/import": 2,
+    "POST /v1/messagelane/campaigns": 2,
+    "POST /v1/messagelane/campaigns/:id/send": 5,
+    "GET /v1/messagelane/deliveries": 1,
+  },
+  notes: [
+    "Credits cover hosted MessageLane campaign operations.",
+    "SMS gateway and carrier charges are separate and paid to the connected provider.",
+  ],
+} as const;
+
 export class WebhookProvider implements SmsProvider {
   constructor(private endpoint: string, private token?: string) {}
   async send(input: { to: string; from: string; message: string }) {

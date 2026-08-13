@@ -62,11 +62,12 @@ client = MessageLaneClient(
 |---|---|
 | `import_contacts(contacts)` | `POST /v1/messagelane/contacts/import` |
 | `list_contacts()` | `GET /v1/messagelane/contacts` |
+| `pricing()` | `GET /v1/messagelane/pricing` |
 | `create_campaign(name, message, sender)` | `POST /v1/messagelane/campaigns` |
 | `send_campaign(id, dry_run=True)` | `POST /v1/messagelane/campaigns/:id/send` |
 | `delivery_report(campaign_id)` | `GET /v1/messagelane/deliveries` |
 
-MessageLane does not meter local use. A hosted service may charge credits for delivery operations according to its published plan. Carrier and gateway charges are separate.
+MessageLane does not meter local use. Hosted pricing: contact import 2 credits, campaign creation 2 credits, campaign dispatch 5 credits, and a delivery report 1 credit. Carrier and gateway charges are separate.
 
 ## Related packages
 
