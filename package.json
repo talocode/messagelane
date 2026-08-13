@@ -1,0 +1,25 @@
+{
+  "name": "@talocode/messagelane",
+  "version": "0.1.0",
+  "description": "Open-source SMS campaigns, consent, and delivery operations for agents.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "messagelane": "./dist/cli.js",
+    "messagelane-mcp": "./dist/mcp.js"
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/cli.js serve"
+  },
+  "keywords": ["talocode", "sms", "campaigns", "mcp", "notifications"],
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "typescript": "^5.7.2"
+  }
+}
