@@ -44,6 +44,8 @@ export TALOCODE_BASE_URL=https://api.talocode.site
 export TALOCODE_API_KEY=your_api_key
 ```
 
+Create an API key at [dashboard.talocode.site](https://dashboard.talocode.site).
+
 Pass the deployed MessageLane URL and API key to the client:
 
 ```python

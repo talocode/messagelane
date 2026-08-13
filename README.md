@@ -76,6 +76,8 @@ messagelane serve --port 3030
 
 Credits pay for hosted MessageLane operations. Connected SMS gateway and carrier fees are separate.
 
+For hosted access, create an API key at [dashboard.talocode.site](https://dashboard.talocode.site). Set `TALOCODE_API_KEY` and use `https://api.talocode.site` as the hosted base URL.
+
 ## MCP
 
 Add the built MCP server to your MCP client:
