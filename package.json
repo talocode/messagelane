@@ -1,7 +1,7 @@
 {
   "name": "@talocode/messagelane",
-  "version": "0.1.0",
-  "description": "Open-source SMS campaigns, consent, and delivery operations for agents.",
+  "version": "0.1.1",
+  "description": "Open-source consent-aware SMS campaigns, provider routing, and delivery operations for agents.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

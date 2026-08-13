@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { readFile } from "node:fs/promises";
 import { MessageLane, DryRunProvider, WebhookProvider } from "./index.js";
 import { startApi } from "./api.js";
